@@ -82,7 +82,7 @@ function createRock(x) {
      * But if the rock *has* reached the bottom of the GAME,
      * we should remove the rock from the DOM
      */
-  
+
 
   // We should kick of the animation of the rock around here
   window.requestAnimationFrame(moveRock);
@@ -102,6 +102,12 @@ function createRock(x) {
  * Finally, alert "YOU LOSE!" to the player.
  */
 function endGame() {
+  clearInterval(gameInterval);
+  Rocks.forEach(function(rock){
+    rock.remove();
+  })
+  document.removeEventListener('keydown', moveDodger)
+  return alert('YOU LOSE!')
 }
 
 function moveDodger(e) {
